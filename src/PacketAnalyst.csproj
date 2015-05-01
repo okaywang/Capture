@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BDD8FADB-23CA-4DCC-BE07-4A806D5C4CC8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PacketAnalyst</RootNamespace>
+    <AssemblyName>PacketAnalyst</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Base">
+      <HintPath>..\..\3rdParty\PcapDotNet\PcapDotNet.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Core">
+      <HintPath>..\..\3rdParty\PcapDotNet\PcapDotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Core.Extensions">
+      <HintPath>..\..\3rdParty\PcapDotNet\PcapDotNet.Core.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="PcapDotNet.Packets">
+      <HintPath>..\..\3rdParty\PcapDotNet\PcapDotNet.Packets.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataAccess\dbml\DataClasses1.cs">
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\dbml\DataClasses1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\IPersistence.cs" />
+    <Compile Include="DataAccess\SqlServerPersistence.cs" />
+    <Compile Include="DataAccess\XMLPersistence.cs" />
+    <Compile Include="NInject\MyNinjectModule.cs" />
+    <Compile Include="DataAccess\dataset\PacketDataSet.cs">
+      <DependentUpon>PacketDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataAccess\dataset\PacketDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PacketDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presenter\DataGridViewPresenter.cs" />
+    <Compile Include="Presenter\IPresenter.cs" />
+    <Compile Include="Presenter\ListBoxPresenter.cs" />
+    <Compile Include="Presenter\PresentBase.cs" />
+    <Compile Include="PacketAnalyzer\PacketStatistics.cs" />
+    <Compile Include="ProtocalReader\ArpReader.cs" />
+    <Compile Include="ProtocalReader\UdpReader.cs" />
+    <Compile Include="ProtocalReader\TcpReader.cs" />
+    <Compile Include="ProtocalReader\ICMPReader.cs" />
+    <Compile Include="ProtocalReader\IProtocalReader.cs" />
+    <Compile Include="ProtocalReader\ReaderBase.cs" />
+    <Compile Include="UI\FrmMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmMode.Designer.cs">
+      <DependentUpon>FrmMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmFilterSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmFilterSettings.Designer.cs">
+      <DependentUpon>FrmFilterSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmPacketGrap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmPacketGrap.Designer.cs">
+      <DependentUpon>FrmPacketGrap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmPacketStatistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmPacketStatistics.Designer.cs">
+      <DependentUpon>FrmPacketStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\Extensions.cs" />
+    <Compile Include="Utility\FilterRuleEventArgs.cs" />
+    <Compile Include="Utility\FilterRuleModel.cs" />
+    <Compile Include="Utility\PacketDigest.cs" />
+    <Compile Include="PacketAnalyzer\PacketMonitor.cs" />
+    <Compile Include="Utility\Position.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\Size.cs" />
+    <None Include="App.config" />
+    <None Include="DataAccess\dbml\DataClasses1.dbml.layout">
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="UI\FrmFilterSettings.resx">
+      <DependentUpon>FrmFilterSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmMode.resx">
+      <DependentUpon>FrmMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmPacketGrap.resx">
+      <DependentUpon>FrmPacketGrap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmPacketStatistics.resx">
+      <DependentUpon>FrmPacketStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="DataAccess\dbml\DataClasses1.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataAccess\dataset\PacketDataSet.xsc">
+      <DependentUpon>PacketDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataAccess\dataset\PacketDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PacketDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataAccess\dataset\PacketDataSet.xss">
+      <DependentUpon>PacketDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppData\Rules.xml" />
+    <Content Include="DataAccess\database\CreateTableScript.txt" />
+    <Content Include="Lib\Ninject.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
