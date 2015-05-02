@@ -19,7 +19,7 @@ namespace PacketAnalyst
         {
             InitializeComponent();
 
-            var device = LivePacketDevice.AllLocalMachine.FirstOrDefault();
+            var device = LivePacketDevice.AllLocalMachine[1];
             _monitor = new PacketMonitor(device, PacketCommunicatorMode.Statistics);
             _monitor.StatisticsRecieved += DisplayStatistics;
         }

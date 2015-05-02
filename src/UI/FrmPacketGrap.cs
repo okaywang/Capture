@@ -27,7 +27,7 @@ namespace PacketAnalyst
         {
             InitializeComponent();
 
-            var device = LivePacketDevice.AllLocalMachine.FirstOrDefault();
+            var device = LivePacketDevice.AllLocalMachine[1];
             _monitor = new PacketMonitor(device, PacketCommunicatorMode.Capture);
             _monitor.PacketRecieved += DisplayPacket;
 
@@ -74,7 +74,6 @@ namespace PacketAnalyst
 
         private void DisplayPacket(Packet packet)
         {
-            IpV4Datagram ip = packet.Ethernet.IpV4; 
             PacketSummary digest = null;
 
             #region switch ethertype
