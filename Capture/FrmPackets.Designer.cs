@@ -82,6 +82,7 @@
             this.btnSet.TabIndex = 0;
             this.btnSet.Text = "设置";
             this.btnSet.UseVisualStyleBackColor = true;
+            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
             // btnClear
             // 
@@ -137,8 +138,9 @@
             // menuExport
             // 
             this.menuExport.Name = "menuExport";
-            this.menuExport.Size = new System.Drawing.Size(116, 22);
+            this.menuExport.Size = new System.Drawing.Size(152, 22);
             this.menuExport.Text = "导出(&S)";
+            this.menuExport.Click += new System.EventHandler(this.menuExport_Click);
             // 
             // menuClear
             // 

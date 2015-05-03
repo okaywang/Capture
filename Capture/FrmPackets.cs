@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capture.Extensions;
 using PcapDotNet.Packets.Http;
+using System.IO;
 
 namespace Capture
 {
@@ -36,7 +37,20 @@ namespace Capture
             //this.Resize += _presenter.ResizePresenter;
 
             btnStop.Enabled = false;
+
+            this.CaptureImage = false;
+            this.CaptureCss = false;
+            this.CaptureJavascript = false;
+            this.CaptureAjax = false;
         }
+
+        public bool CaptureJavascript { get; set; }
+
+        public bool CaptureCss { get; set; }
+
+        public bool CaptureImage { get; set; }
+
+        public bool CaptureAjax { get; set; }
 
         private void PacketRecievedHanlder(Packet packet)
         {
@@ -68,6 +82,25 @@ namespace Capture
                 return;
             }
             var httpDatagram = packet.Ethernet.IpV4.Tcp.Http as HttpRequestDatagram;
+            if (!this.CaptureAjax && httpDatagram.Header["X-Requested-With"] != null && httpDatagram.Header["X-Requested-With"].ValueString == "XMLHttpRequest")
+            {
+                return;
+            }
+            if (!this.CaptureCss && httpDatagram.Uri.Contains(".css"))
+            {
+                return;
+            }
+            if (!this.CaptureJavascript && httpDatagram.Uri.Contains(".js"))
+            {
+                return;
+            }
+            var accept = httpDatagram.Header["accept"];
+            var strAccept = accept == null ? "" : accept.ValueString;
+            if (!this.CaptureImage && (strAccept.Contains("image/") && !strAccept.Contains("text/html")))
+            {
+                return;
+            }
+
             var summary = new HttpPacketSummary();
             summary.Timestamp = DateTime.Now;
             summary.Source = packet.Ethernet.IpV4.Source.ToString();
@@ -75,7 +108,7 @@ namespace Capture
 
             summary.HttpMethod = httpDatagram.Method.KnownMethod.ToString();
             summary.WebsiteName = httpDatagram.Header["host"].ValueString;
-            summary.Url = httpDatagram.Uri.ToString();
+            summary.Url = httpDatagram.Uri;
 
 
             (_presenter as Control).InvokeIfNeeded<HttpPacketSummary>(_presenter.AddLine, summary);
@@ -119,16 +152,39 @@ namespace Capture
         private void menuStart_Click(object sender, EventArgs e)
         {
             _monitor.Start();
+            menuStart.Enabled = btnStart.Enabled = false;
+            menuStop.Enabled = btnStop.Enabled = true;
         }
 
         private void menuStop_Click(object sender, EventArgs e)
         {
             _monitor.Stop();
+            menuStop.Enabled = btnStop.Enabled = false;
+            menuStart.Enabled = btnStart.Enabled = true;
         }
 
         private void menuAbout_Click(object sender, EventArgs e)
         {
             new FrmAbout().ShowDialog();
+        }
+
+        private void btnSet_Click(object sender, EventArgs e)
+        {
+            var frmSetting = new FrmSetting(this);
+            frmSetting.ShowDialog();
+        }
+
+        private void menuExport_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog() { Filter = ".txt|.txt", FileName = DateTime.Now.ToString("yyyyMMddhhmmss") })
+            {
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    var data = _presenter.GetData();
+                    var text = data.Aggregate<HttpPacketSummary, string>("", (str, item) => str + item.ToString() + Environment.NewLine);
+                    File.WriteAllText(dialog.FileName, text);
+                }
+            }
         }
 
     }

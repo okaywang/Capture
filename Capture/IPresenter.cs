@@ -12,5 +12,7 @@ namespace Capture
     {
         void AddLine(HttpPacketSummary summary);
         void Clear();
+
+        List<HttpPacketSummary> GetData();
     }
 }
