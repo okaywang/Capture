@@ -33,7 +33,6 @@
             this.chkImage = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
-            this.name1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkAjax = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
@@ -87,22 +86,12 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // name1
-            // 
-            this.name1.AutoSize = true;
-            this.name1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.name1.Location = new System.Drawing.Point(116, 20);
-            this.name1.Name = "name1";
-            this.name1.Size = new System.Drawing.Size(79, 13);
-            this.name1.TabIndex = 3;
-            this.name1.Text = "捕获规则设置";
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.chkJs);
             this.groupBox1.Controls.Add(this.chkCss);
             this.groupBox1.Controls.Add(this.chkImage);
-            this.groupBox1.Location = new System.Drawing.Point(31, 93);
+            this.groupBox1.Location = new System.Drawing.Point(31, 78);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(259, 127);
             this.groupBox1.TabIndex = 4;
@@ -112,7 +101,7 @@
             // chkAjax
             // 
             this.chkAjax.AutoSize = true;
-            this.chkAjax.Location = new System.Drawing.Point(78, 56);
+            this.chkAjax.Location = new System.Drawing.Point(78, 42);
             this.chkAjax.Name = "chkAjax";
             this.chkAjax.Size = new System.Drawing.Size(122, 17);
             this.chkAjax.TabIndex = 5;
@@ -126,7 +115,6 @@
             this.ClientSize = new System.Drawing.Size(333, 286);
             this.Controls.Add(this.chkAjax);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.name1);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.label1);
             this.Name = "FrmSetting";
@@ -146,7 +134,6 @@
         private System.Windows.Forms.CheckBox chkImage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Label name1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chkAjax;
     }
