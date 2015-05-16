@@ -17,19 +17,36 @@ namespace Capture
             this.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            //var properties = typeof(HttpPacketSummary).GetProperties();
-            //foreach (var item in properties)
-            //{
-            //    this.Columns.Add(item.Name, item.Name);
-            //}
+            var properties = typeof(PacketSummary).GetProperties();
+            foreach (var item in properties)
+            {
+                this.Columns.Add(item.Name, item.Name);
+            }
 
-            this.Columns.Add("time", "上网时间");
-            this.Columns.Add("destIp", "目的ip");
-            this.Columns.Add("srcIp", "源ip");
-            this.Columns.Add("host", "网站名");
-            this.Columns.Add("url", "Url");
+            //this.Columns.Add("time", "上网时间");
+            //this.Columns.Add("destIp", "目的ip");
+            //this.Columns.Add("srcIp", "源ip");
+            //this.Columns.Add("host", "网站名");
+            //this.Columns.Add("url", "Url");
         }
-        public void AddLine(HttpPacketSummary pd)
+
+        public void ShowProtocal(string protocal,bool visible)
+        {
+            for (int i = 0; i < this.Rows.Count; i++)
+            {
+                var row = this.Rows[i];
+                if (row.IsNewRow)
+                {
+                    break;
+                }
+                if (row.Cells["Protocal"].Value.ToString() == protocal)
+                {
+                    row.Visible = visible;
+                }
+            }
+        }
+
+        public void AddLine(PacketSummary pd)
         {
             if (pd == null)
             {
@@ -37,11 +54,13 @@ namespace Capture
             }
             var row = (DataGridViewRow)this.Rows[0].Clone();
 
-            row.Cells[0].Value = pd.Timestamp.ToString("yyyy-MM-dd hh:mm:ss");
-            row.Cells[1].Value = pd.Destination;
-            row.Cells[2].Value = pd.Source;
-            row.Cells[3].Value = pd.WebsiteName;
-            row.Cells[4].Value = pd.Url;
+
+            var properties = typeof(PacketSummary).GetProperties();
+            for (int i = 0; i < properties.Length; i++)
+            {
+                row.Cells[i].Value = properties[i].GetValue(pd).ToString();
+            }
+
 
             this.Rows.Add(row);
 
@@ -52,9 +71,9 @@ namespace Capture
             this.Rows.Clear();
         }
 
-        public List<HttpPacketSummary> GetData()
+        public List<PacketSummary> GetData()
         {
-            var result = new List<HttpPacketSummary>();
+            var result = new List<PacketSummary>();
             for (int i = 0; i < this.Rows.Count; i++)
             {
                 var row = this.Rows[i];
@@ -62,12 +81,12 @@ namespace Capture
                 {
                     break;
                 }
-                var summary = new HttpPacketSummary();
-                summary.Timestamp = DateTime.Parse(row.Cells[0].Value.ToString());
+                var summary = new PacketSummary();
+                summary.Timestamp = row.Cells[0].Value.ToString();
                 summary.Destination = row.Cells[1].Value.ToString();
                 summary.Source = row.Cells[2].Value.ToString();
-                summary.WebsiteName = row.Cells[3].Value.ToString();
-                summary.Url = row.Cells[4].Value.ToString();
+                //summary.WebsiteName = row.Cells[3].Value.ToString();
+                //summary.Url = row.Cells[4].Value.ToString();
                 result.Add(summary);
             }
             return result;

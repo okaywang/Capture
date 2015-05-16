@@ -12,8 +12,8 @@ namespace Capture
 {
     public partial class FrmSetting : Form
     {
-        private FrmPackets _frmPackets;
-        public FrmSetting(FrmPackets frm)
+        private FrmPacketsHttp _frmPackets;
+        public FrmSetting(FrmPacketsHttp frm)
         {
             InitializeComponent();
 

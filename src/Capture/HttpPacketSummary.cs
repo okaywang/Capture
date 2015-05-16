@@ -18,7 +18,5 @@ namespace Capture
         {
             return string.Format("时间：{0},目的Ip：{1}，源Ip：{2}，网站：{3}，url：{4}", this.Timestamp, this.Destination, this.Source, this.WebsiteName, this.Url);
         }
-    }
-
-
+    } 
 }

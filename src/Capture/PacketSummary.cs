@@ -8,12 +8,16 @@ namespace Capture
 {
     public class PacketSummary
     {
-        public DateTime Timestamp { get; set; }
+        public string Timestamp { get; set; }
 
         public string Source { get; set; }
 
         public string Destination { get; set; }
 
         public string Protocal { get; set; }
+
+        public int Length { get; set; }
+
+        public string Memo { get; set; }
     }
 }

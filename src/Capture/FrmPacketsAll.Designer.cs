@@ -1,6 +1,6 @@
 ﻿namespace Capture
 {
-    partial class FrmPackets
+    partial class FrmPacketsAll
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -30,6 +30,8 @@
         private void InitializeComponent()
         {
             this.pnlHeader = new System.Windows.Forms.Panel();
+            this.chkUdp = new System.Windows.Forms.CheckBox();
+            this.chkTcp = new System.Windows.Forms.CheckBox();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnSet = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
@@ -48,12 +50,16 @@
             this.menuSet = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.chkArp = new System.Windows.Forms.CheckBox();
+            this.pnlCheckBoxes = new System.Windows.Forms.Panel();
             this.pnlHeader.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.pnlCheckBoxes.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlHeader
             // 
+            this.pnlHeader.Controls.Add(this.pnlCheckBoxes);
             this.pnlHeader.Controls.Add(this.btnStop);
             this.pnlHeader.Controls.Add(this.btnSet);
             this.pnlHeader.Controls.Add(this.btnClear);
@@ -63,6 +69,32 @@
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(844, 74);
             this.pnlHeader.TabIndex = 0;
+            // 
+            // chkUdp
+            // 
+            this.chkUdp.AutoSize = true;
+            this.chkUdp.Checked = true;
+            this.chkUdp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkUdp.Location = new System.Drawing.Point(106, 12);
+            this.chkUdp.Name = "chkUdp";
+            this.chkUdp.Size = new System.Drawing.Size(46, 17);
+            this.chkUdp.TabIndex = 1;
+            this.chkUdp.Text = "Udp";
+            this.chkUdp.UseVisualStyleBackColor = true;
+            this.chkUdp.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // chkTcp
+            // 
+            this.chkTcp.AutoSize = true;
+            this.chkTcp.Checked = true;
+            this.chkTcp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkTcp.Location = new System.Drawing.Point(55, 11);
+            this.chkTcp.Name = "chkTcp";
+            this.chkTcp.Size = new System.Drawing.Size(45, 17);
+            this.chkTcp.TabIndex = 1;
+            this.chkTcp.Text = "Tcp";
+            this.chkTcp.UseVisualStyleBackColor = true;
+            this.chkTcp.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // btnStop
             // 
@@ -138,7 +170,7 @@
             // menuExport
             // 
             this.menuExport.Name = "menuExport";
-            this.menuExport.Size = new System.Drawing.Size(152, 22);
+            this.menuExport.Size = new System.Drawing.Size(116, 22);
             this.menuExport.Text = "导出(&S)";
             this.menuExport.Click += new System.EventHandler(this.menuExport_Click);
             // 
@@ -213,7 +245,30 @@
             this.menuAbout.Text = "关于本系统(&A)";
             this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
             // 
-            // FrmPackets
+            // chkArp
+            // 
+            this.chkArp.AutoSize = true;
+            this.chkArp.Checked = true;
+            this.chkArp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkArp.Location = new System.Drawing.Point(5, 11);
+            this.chkArp.Name = "chkArp";
+            this.chkArp.Size = new System.Drawing.Size(42, 17);
+            this.chkArp.TabIndex = 1;
+            this.chkArp.Text = "Arp";
+            this.chkArp.UseVisualStyleBackColor = true;
+            this.chkArp.CheckedChanged += new System.EventHandler(this.CheckedChanged);
+            // 
+            // pnlCheckBoxes
+            // 
+            this.pnlCheckBoxes.Controls.Add(this.chkUdp);
+            this.pnlCheckBoxes.Controls.Add(this.chkTcp);
+            this.pnlCheckBoxes.Controls.Add(this.chkArp);
+            this.pnlCheckBoxes.Location = new System.Drawing.Point(3, 36);
+            this.pnlCheckBoxes.Name = "pnlCheckBoxes";
+            this.pnlCheckBoxes.Size = new System.Drawing.Size(210, 32);
+            this.pnlCheckBoxes.TabIndex = 2;
+            // 
+            // FrmPacketsAll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -222,11 +277,13 @@
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "FrmPackets";
+            this.Name = "FrmPacketsAll";
             this.Text = "Http请求连接监控";
             this.pnlHeader.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.pnlCheckBoxes.ResumeLayout(false);
+            this.pnlCheckBoxes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,6 +310,10 @@
         private System.Windows.Forms.ToolStripMenuItem menuAbout;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem menuSet;
+        private System.Windows.Forms.CheckBox chkUdp;
+        private System.Windows.Forms.CheckBox chkTcp;
+        private System.Windows.Forms.CheckBox chkArp;
+        private System.Windows.Forms.Panel pnlCheckBoxes;
 
     }
 }

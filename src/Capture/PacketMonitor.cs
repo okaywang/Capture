@@ -21,7 +21,7 @@ namespace Capture
         public PacketMonitor(PacketDevice device, PacketCommunicatorMode mode)
         {
             _device = device;
-            _communicator = _device.Open(65536, PacketDeviceOpenAttributes.NoCaptureRemote, 1000);
+            _communicator = _device.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000);
             _communicator.Mode = mode;
             _threadCapture = new Thread(ThreadCaptureHandler);
         }

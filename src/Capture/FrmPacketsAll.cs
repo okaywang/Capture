@@ -12,14 +12,17 @@ using System.Windows.Forms;
 using Capture.Extensions;
 using PcapDotNet.Packets.Http;
 using System.IO;
+using Capture.ProtocalReader;
+using PcapDotNet.Packets.Ethernet;
 
 namespace Capture
 {
-    public partial class FrmPackets : Form
+    public partial class FrmPacketsAll : Form
     {
         private PacketMonitor _monitor;
         private IPresenter _presenter;
-        public FrmPackets(LivePacketDevice device)
+        private Dictionary<string, CheckBox> _dictCheckBoxes;
+        public FrmPacketsAll(LivePacketDevice device)
         {
             InitializeComponent();
 
@@ -42,6 +45,13 @@ namespace Capture
             this.CaptureCss = false;
             this.CaptureJavascript = false;
             this.CaptureAjax = false;
+
+            _dictCheckBoxes = new Dictionary<string, CheckBox>();
+            foreach (var item in this.pnlCheckBoxes.Controls)
+            {
+                var control = item as CheckBox;
+                this._dictCheckBoxes.Add(control.Text, control);
+            }
         }
 
         public bool CaptureJavascript { get; set; }
@@ -54,64 +64,23 @@ namespace Capture
 
         private void PacketRecievedHanlder(Packet packet)
         {
-            //throw new NotImplementedException();
-            if (packet.Ethernet.IpV4 == null)
+            PacketSummary summary = null;
+            switch (packet.Ethernet.EtherType)
             {
-                return;
+                case EthernetType.Arp:
+                    summary = ArpReader.Instance.Read(packet);
+                    break;
+                case EthernetType.IpV4:
+                    summary = IpReader.Instance.Read(packet);
+                    break;
+                default:
+                    break;
             }
 
-            if (packet.Ethernet.IpV4.Tcp == null)
+            if (summary != null && this._dictCheckBoxes[summary.Protocal].Checked)
             {
-                return;
+                (_presenter as Control).InvokeIfNeeded<PacketSummary>(_presenter.AddLine, summary);
             }
-            if (packet.Ethernet.IpV4.Tcp.DestinationPort == 443)
-            {
-
-            }
-
-            if (packet.Ethernet.IpV4.Tcp.Http == null)
-            {
-                return;
-            }
-            if (packet.Ethernet.IpV4.Tcp.Http.Version == null)
-            {
-                return;
-            }
-            if (packet.Ethernet.IpV4.Tcp.Http.IsRequest == false)
-            {
-                return;
-            }
-            var httpDatagram = packet.Ethernet.IpV4.Tcp.Http as HttpRequestDatagram;
-            if (!this.CaptureAjax && httpDatagram.Header["X-Requested-With"] != null && httpDatagram.Header["X-Requested-With"].ValueString == "XMLHttpRequest")
-            {
-                return;
-            }
-            if (!this.CaptureCss && httpDatagram.Uri.Contains(".css"))
-            {
-                return;
-            }
-            if (!this.CaptureJavascript && httpDatagram.Uri.Contains(".js"))
-            {
-                return;
-            }
-            var accept = httpDatagram.Header["accept"];
-            var strAccept = accept == null ? "" : accept.ValueString;
-            if (!this.CaptureImage && (strAccept.Contains("image/") && !strAccept.Contains("text/html")))
-            {
-                return;
-            }
-
-            var summary = new HttpPacketSummary();
-            summary.Timestamp = DateTime.Now;
-            summary.Source = packet.Ethernet.IpV4.Source.ToString();
-            summary.Destination = packet.Ethernet.IpV4.Destination.ToString();
-
-            summary.HttpMethod = httpDatagram.Method.KnownMethod.ToString();
-            summary.WebsiteName = httpDatagram.Header["host"].ValueString;
-            summary.Url = httpDatagram.Uri;
-
-
-            (_presenter as Control).InvokeIfNeeded<HttpPacketSummary>(_presenter.AddLine, summary);
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -170,8 +139,8 @@ namespace Capture
 
         private void btnSet_Click(object sender, EventArgs e)
         {
-            var frmSetting = new FrmSetting(this);
-            frmSetting.ShowDialog();
+            //var frmSetting = new FrmSetting(this);
+            //frmSetting.ShowDialog();
         }
 
         private void menuExport_Click(object sender, EventArgs e)
@@ -181,10 +150,17 @@ namespace Capture
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     var data = _presenter.GetData();
-                    var text = data.Aggregate<HttpPacketSummary, string>("", (str, item) => str + item.ToString() + Environment.NewLine);
+                    var text = data.Aggregate<PacketSummary, string>("", (str, item) => str + item.ToString() + Environment.NewLine);
                     File.WriteAllText(dialog.FileName, text);
                 }
             }
+        }
+
+        private void CheckedChanged(object sender, EventArgs e)
+        {
+            var control = sender as CheckBox;
+            var protocal = control.Text;
+            this._presenter.ShowProtocal(protocal, control.Checked);
         }
 
     }

@@ -17,8 +17,8 @@ namespace Capture
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
-            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+            //Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
+            //AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
 
 
@@ -27,7 +27,8 @@ namespace Capture
             if (dialogResult == DialogResult.OK)
             {
                 var device = frmDevices.SelectedDevice;
-                Application.Run(new FrmPackets(device));
+                //Application.Run(new FrmPacketsHttp(device));
+                Application.Run(new FrmPacketsAll(device));
             }
         }
 

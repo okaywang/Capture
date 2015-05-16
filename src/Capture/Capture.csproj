@@ -79,11 +79,11 @@
     <Compile Include="FrmError.Designer.cs">
       <DependentUpon>FrmError.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPackets.cs">
+    <Compile Include="FrmPacketsHttp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPackets.Designer.cs">
-      <DependentUpon>FrmPackets.cs</DependentUpon>
+    <Compile Include="FrmPacketsHttp.Designer.cs">
+      <DependentUpon>FrmPacketsHttp.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSetting.cs">
       <SubType>Form</SubType>
@@ -101,6 +101,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PacketSummary.cs" />
     <Compile Include="IPresenter.cs" />
+    <Compile Include="FrmPacketsAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPacketsAll.Designer.cs">
+      <DependentUpon>FrmPacketsAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProtocalReader\ArpReader.cs" />
+    <Compile Include="ProtocalReader\ICMPReader.cs" />
+    <Compile Include="ProtocalReader\IProtocalReader.cs" />
+    <Compile Include="ProtocalReader\ReaderBase.cs" />
+    <Compile Include="ProtocalReader\TcpReader.cs" />
+    <Compile Include="ProtocalReader\UdpReader.cs" />
+    <Compile Include="ProtocalReader\IpReader.cs" />
     <EmbeddedResource Include="FrmAbout.resx">
       <DependentUpon>FrmAbout.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,8 +123,8 @@
     <EmbeddedResource Include="FrmError.resx">
       <DependentUpon>FrmError.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmPackets.resx">
-      <DependentUpon>FrmPackets.cs</DependentUpon>
+    <EmbeddedResource Include="FrmPacketsHttp.resx">
+      <DependentUpon>FrmPacketsHttp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSetting.resx">
       <DependentUpon>FrmSetting.cs</DependentUpon>
@@ -125,6 +138,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FrmPacketsAll.resx">
+      <DependentUpon>FrmPacketsAll.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -136,7 +152,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Dependency\PcapDotNet.Base.dll" />

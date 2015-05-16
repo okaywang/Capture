@@ -10,9 +10,10 @@ namespace Capture
 {
     public interface IPresenter
     {
-        void AddLine(HttpPacketSummary summary);
+        void ShowProtocal(string protocal,bool visible);
+        void AddLine(PacketSummary summary);
         void Clear();
 
-        List<HttpPacketSummary> GetData();
+        List<PacketSummary> GetData();
     }
 }
