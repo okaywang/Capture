@@ -26,9 +26,11 @@ namespace Capture
             var dialogResult = frmDevices.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
-                var device = frmDevices.SelectedDevice;
-                //Application.Run(new FrmPacketsHttp(device));
-                Application.Run(new FrmPacketsAll(device));
+                Application.Run(new FrmPacketsAll(frmDevices.SelectedDevice));
+            }
+            else if (dialogResult == DialogResult.Yes)
+            {
+                Application.Run(new FrmPacketsHttp(frmDevices.SelectedDevice));
             }
         }
 

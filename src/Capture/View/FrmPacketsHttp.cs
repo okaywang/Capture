@@ -18,12 +18,14 @@ namespace Capture
     public partial class FrmPacketsHttp : Form
     {
         private PacketMonitor _monitor;
-        private IPresenter _presenter;
+        private IPresenter<HttpPacketSummary> _presenter;
         public FrmPacketsHttp(LivePacketDevice device)
         {
             InitializeComponent();
 
-            _presenter = new DataGridViewPresenter();
+            _presenter = new DataGridViewPresenter<HttpPacketSummary>();
+            _presenter.HideColumn("Protocal");
+            _presenter.HideColumn("Memo");
             var presenterControl = _presenter as Control;
             presenterControl.Dock = DockStyle.Fill;
             this.pnlBody.Controls.Add(presenterControl);
@@ -31,12 +33,10 @@ namespace Capture
             _monitor = new PacketMonitor(device, PacketCommunicatorMode.Capture);
             _monitor.PacketRecieved += PacketRecievedHanlder;
 
-            //_presenter = Program.kernel.Get<IPresenter>();
-            //_presenter.AppendTo(this.Controls);
 
-            //this.Resize += _presenter.ResizePresenter;
 
-            btnStop.Enabled = false;
+            menuStop.Enabled = btnStop.Enabled = false;
+
 
             this.CaptureImage = false;
             this.CaptureCss = false;
@@ -64,10 +64,6 @@ namespace Capture
             {
                 return;
             }
-            if (packet.Ethernet.IpV4.Tcp.DestinationPort == 443)
-            {
-
-            }
 
             if (packet.Ethernet.IpV4.Tcp.Http == null)
             {
@@ -82,6 +78,10 @@ namespace Capture
                 return;
             }
             var httpDatagram = packet.Ethernet.IpV4.Tcp.Http as HttpRequestDatagram;
+            if (httpDatagram.Method.KnownMethod == HttpRequestKnownMethod.Unknown)
+            {
+                return;
+            }
             if (!this.CaptureAjax && httpDatagram.Header["X-Requested-With"] != null && httpDatagram.Header["X-Requested-With"].ValueString == "XMLHttpRequest")
             {
                 return;
@@ -93,14 +93,14 @@ namespace Capture
             if (!this.CaptureJavascript && httpDatagram.Uri.Contains(".js"))
             {
                 return;
-            } 
+            }
 
             var accept = httpDatagram.Header["accept"];
             var strAccept = accept == null ? "" : accept.ValueString;
             if (!this.CaptureImage && (strAccept.Contains("image/") && !strAccept.Contains("text/html")))
             {
                 return;
-            } 
+            }
 
             var summary = new HttpPacketSummary();
             summary.Timestamp = DateTime.Now.ToLongTimeString();
@@ -110,7 +110,7 @@ namespace Capture
             summary.HttpMethod = httpDatagram.Method.KnownMethod.ToString();
             summary.WebsiteName = httpDatagram.Header["host"].ValueString;
             summary.Url = httpDatagram.Uri;
-
+            summary.Length = packet.Length;
 
             (_presenter as Control).InvokeIfNeeded<HttpPacketSummary>(_presenter.AddLine, summary);
         }

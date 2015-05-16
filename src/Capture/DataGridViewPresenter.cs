@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Capture
 {
-    public class DataGridViewPresenter : DataGridView, IPresenter
+    public class DataGridViewPresenter<T> : DataGridView, IPresenter<T> where T : PacketSummary, new()
     {
         public DataGridViewPresenter()
         {
@@ -17,10 +18,11 @@ namespace Capture
             this.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            var properties = typeof(PacketSummary).GetProperties();
+            var properties = typeof(T).GetProperties();
             foreach (var item in properties)
             {
-                this.Columns.Add(item.Name, item.Name);
+                var attr = item.GetCustomAttributes(typeof(DisplayNameAttribute), true).First() as DisplayNameAttribute;
+                this.Columns.Add(item.Name, attr.DisplayName);
             }
 
             //this.Columns.Add("time", "上网时间");
@@ -30,7 +32,7 @@ namespace Capture
             //this.Columns.Add("url", "Url");
         }
 
-        public void ShowProtocal(string protocal,bool visible)
+        public void ShowProtocal(string protocal, bool visible)
         {
             for (int i = 0; i < this.Rows.Count; i++)
             {
@@ -46,7 +48,7 @@ namespace Capture
             }
         }
 
-        public void AddLine(PacketSummary pd)
+        public void AddLine(T pd)
         {
             if (pd == null)
             {
@@ -55,10 +57,11 @@ namespace Capture
             var row = (DataGridViewRow)this.Rows[0].Clone();
 
 
-            var properties = typeof(PacketSummary).GetProperties();
+            var properties = typeof(T).GetProperties();
             for (int i = 0; i < properties.Length; i++)
             {
-                row.Cells[i].Value = properties[i].GetValue(pd).ToString();
+                var value = properties[i].GetValue(pd);
+                row.Cells[i].Value = value;
             }
 
 
@@ -71,9 +74,9 @@ namespace Capture
             this.Rows.Clear();
         }
 
-        public List<PacketSummary> GetData()
+        public List<T> GetData()
         {
-            var result = new List<PacketSummary>();
+            var result = new List<T>();
             for (int i = 0; i < this.Rows.Count; i++)
             {
                 var row = this.Rows[i];
@@ -81,7 +84,7 @@ namespace Capture
                 {
                     break;
                 }
-                var summary = new PacketSummary();
+                var summary = new T();
                 summary.Timestamp = row.Cells[0].Value.ToString();
                 summary.Destination = row.Cells[1].Value.ToString();
                 summary.Source = row.Cells[2].Value.ToString();
@@ -90,6 +93,12 @@ namespace Capture
                 result.Add(summary);
             }
             return result;
+        }
+
+
+        public void HideColumn(string columnName)
+        {
+            this.Columns[columnName].Visible = false;
         }
     }
 }

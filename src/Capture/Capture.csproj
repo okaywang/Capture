@@ -61,34 +61,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ControlExtension.cs" />
-    <Compile Include="FrmAbout.cs">
+    <Compile Include="ProtocalReader\DnsReader.cs" />
+    <Compile Include="ProtocalReader\QICQ.cs" />
+    <Compile Include="ProtocalReader\HttpReader.cs" />
+    <Compile Include="View\FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAbout.Designer.cs">
+    <Compile Include="View\FrmAbout.Designer.cs">
       <DependentUpon>FrmAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDevices.cs">
+    <Compile Include="View\FrmDevices.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDevices.Designer.cs">
+    <Compile Include="View\FrmDevices.Designer.cs">
       <DependentUpon>FrmDevices.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmError.cs">
+    <Compile Include="View\FrmError.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmError.Designer.cs">
+    <Compile Include="View\FrmError.Designer.cs">
       <DependentUpon>FrmError.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPacketsHttp.cs">
+    <Compile Include="View\FrmPacketsHttp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPacketsHttp.Designer.cs">
+    <Compile Include="View\FrmPacketsHttp.Designer.cs">
       <DependentUpon>FrmPacketsHttp.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSetting.cs">
+    <Compile Include="View\FrmSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSetting.Designer.cs">
+    <Compile Include="View\FrmSetting.Designer.cs">
       <DependentUpon>FrmSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="DataGridViewPresenter.cs">
@@ -101,10 +104,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PacketSummary.cs" />
     <Compile Include="IPresenter.cs" />
-    <Compile Include="FrmPacketsAll.cs">
+    <Compile Include="View\FrmPacketsAll.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPacketsAll.Designer.cs">
+    <Compile Include="View\FrmPacketsAll.Designer.cs">
       <DependentUpon>FrmPacketsAll.cs</DependentUpon>
     </Compile>
     <Compile Include="ProtocalReader\ArpReader.cs" />
@@ -114,19 +117,19 @@
     <Compile Include="ProtocalReader\TcpReader.cs" />
     <Compile Include="ProtocalReader\UdpReader.cs" />
     <Compile Include="ProtocalReader\IpReader.cs" />
-    <EmbeddedResource Include="FrmAbout.resx">
+    <EmbeddedResource Include="View\FrmAbout.resx">
       <DependentUpon>FrmAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDevices.resx">
+    <EmbeddedResource Include="View\FrmDevices.resx">
       <DependentUpon>FrmDevices.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmError.resx">
+    <EmbeddedResource Include="View\FrmError.resx">
       <DependentUpon>FrmError.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmPacketsHttp.resx">
+    <EmbeddedResource Include="View\FrmPacketsHttp.resx">
       <DependentUpon>FrmPacketsHttp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSetting.resx">
+    <EmbeddedResource Include="View\FrmSetting.resx">
       <DependentUpon>FrmSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -138,7 +141,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FrmPacketsAll.resx">
+    <EmbeddedResource Include="View\FrmPacketsAll.resx">
       <DependentUpon>FrmPacketsAll.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

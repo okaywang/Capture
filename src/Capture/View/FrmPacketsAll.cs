@@ -20,13 +20,13 @@ namespace Capture
     public partial class FrmPacketsAll : Form
     {
         private PacketMonitor _monitor;
-        private IPresenter _presenter;
+        private IPresenter<PacketSummary> _presenter;
         private Dictionary<string, CheckBox> _dictCheckBoxes;
         public FrmPacketsAll(LivePacketDevice device)
         {
             InitializeComponent();
 
-            _presenter = new DataGridViewPresenter();
+            _presenter = new DataGridViewPresenter<PacketSummary>();
             var presenterControl = _presenter as Control;
             presenterControl.Dock = DockStyle.Fill;
             this.pnlBody.Controls.Add(presenterControl);
@@ -39,7 +39,7 @@ namespace Capture
 
             //this.Resize += _presenter.ResizePresenter;
 
-            btnStop.Enabled = false;
+            menuStop.Enabled = btnStop.Enabled = false;
 
             this.CaptureImage = false;
             this.CaptureCss = false;
@@ -77,9 +77,14 @@ namespace Capture
                     break;
             }
 
-            if (summary != null && this._dictCheckBoxes[summary.Protocal].Checked)
+            if (summary != null)
             {
-                (_presenter as Control).InvokeIfNeeded<PacketSummary>(_presenter.AddLine, summary);
+                CheckBox control;
+                this._dictCheckBoxes.TryGetValue(summary.Protocal, out control);
+                if (control == null || control.Checked)
+                {
+                    (_presenter as Control).InvokeIfNeeded<PacketSummary>(_presenter.AddLine, summary);
+                }
             }
         }
 
@@ -101,11 +106,6 @@ namespace Capture
         private void btnClear_Click(object sender, EventArgs e)
         {
             _presenter.Clear();
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void menuExit_Click(object sender, EventArgs e)

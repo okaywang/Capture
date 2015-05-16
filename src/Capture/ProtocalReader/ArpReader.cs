@@ -14,6 +14,7 @@ namespace Capture.ProtocalReader
         public override PacketSummary Read(PcapDotNet.Packets.Packet packet)
         {
             var ps = base.Read(packet);
+            ps.Protocal = "ARP";
             var arpDatagram = packet.Ethernet.Arp;
             if (arpDatagram.Operation == PcapDotNet.Packets.Arp.ArpOperation.Request)
             {

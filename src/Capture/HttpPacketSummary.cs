@@ -8,10 +8,13 @@ namespace Capture
 {
     public class HttpPacketSummary : PacketSummary
     {
+        [System.ComponentModel.DisplayName("http方法")]
         public string HttpMethod { get; set; }
 
+        [System.ComponentModel.DisplayName("Url")]
         public string Url { get; set; }
 
+        [System.ComponentModel.DisplayName("网站名")]
         public string WebsiteName { get; set; }
 
         public override string ToString()

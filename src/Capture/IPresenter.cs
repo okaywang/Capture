@@ -8,12 +8,13 @@ using System.Windows.Forms;
 
 namespace Capture
 {
-    public interface IPresenter
+    public interface IPresenter<T> where T : PacketSummary
     {
         void ShowProtocal(string protocal,bool visible);
-        void AddLine(PacketSummary summary);
+        void HideColumn(string columnName);
+        void AddLine(T summary);
         void Clear();
 
-        List<PacketSummary> GetData();
+        List<T> GetData();
     }
 }

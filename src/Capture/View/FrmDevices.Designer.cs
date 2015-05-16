@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pnlDevices = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.pnlDevices = new System.Windows.Forms.Panel();
             this.btnNext = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -47,14 +48,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "选择网络连接";
-            // 
-            // pnlDevices
-            // 
-            this.pnlDevices.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDevices.Location = new System.Drawing.Point(3, 16);
-            this.pnlDevices.Name = "pnlDevices";
-            this.pnlDevices.Size = new System.Drawing.Size(552, 219);
-            this.pnlDevices.TabIndex = 0;
             // 
             // panel2
             // 
@@ -74,6 +67,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "备注：在有多块网卡或者虚拟网卡的话，可以指定一个网卡进行监控。";
             // 
+            // pnlDevices
+            // 
+            this.pnlDevices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDevices.Location = new System.Drawing.Point(3, 16);
+            this.pnlDevices.Name = "pnlDevices";
+            this.pnlDevices.Size = new System.Drawing.Size(552, 219);
+            this.pnlDevices.TabIndex = 0;
+            // 
             // btnNext
             // 
             this.btnNext.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -81,15 +82,27 @@
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(126, 37);
             this.btnNext.TabIndex = 1;
-            this.btnNext.Text = "确定";
+            this.btnNext.Text = "网络连接监控";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // button1
+            // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.button1.Location = new System.Drawing.Point(300, 256);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 37);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Http网络连接监控";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // FrmDevices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 305);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmDevices";
@@ -109,5 +122,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlDevices;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -6,16 +6,21 @@ using System.Text;
 
 namespace Capture.ProtocalReader
 {
-    public class TcpReader:ReaderBase
+    public class TcpReader : ReaderBase
     {
         public readonly static TcpReader Instance = new TcpReader();
         private TcpReader() { }
 
         public override PacketSummary Read(PcapDotNet.Packets.Packet packet)
         {
+            if (packet.Ethernet.IpV4.Tcp.SourcePort == 80 || packet.Ethernet.IpV4.Tcp.DestinationPort == 80)
+            {
+                return HttpReader.Instance.Read(packet);
+            }
+
             var ps = base.Read(packet);
 
-            ps.Protocal = "Tcp";
+            ps.Protocal = "TCP";
             ps.Source = packet.Ethernet.IpV4.Source.ToString();
             ps.Destination = packet.Ethernet.IpV4.Destination.ToString();
 
