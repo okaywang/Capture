@@ -30,12 +30,6 @@
         private void InitializeComponent()
         {
             this.pnlHeader = new System.Windows.Forms.Panel();
-            this.pnlCheckBoxes = new System.Windows.Forms.Panel();
-            this.chkQQ = new System.Windows.Forms.CheckBox();
-            this.chkDns = new System.Windows.Forms.CheckBox();
-            this.chkUdp = new System.Windows.Forms.CheckBox();
-            this.chkTcp = new System.Windows.Forms.CheckBox();
-            this.chkArp = new System.Windows.Forms.CheckBox();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
@@ -51,16 +45,12 @@
             this.menuStop = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.pnlHeader.SuspendLayout();
-            this.pnlCheckBoxes.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlHeader
             // 
-            this.pnlHeader.Controls.Add(this.pnlCheckBoxes);
             this.pnlHeader.Controls.Add(this.btnStop);
             this.pnlHeader.Controls.Add(this.btnClear);
             this.pnlHeader.Controls.Add(this.btnStart);
@@ -69,85 +59,6 @@
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(844, 74);
             this.pnlHeader.TabIndex = 0;
-            // 
-            // pnlCheckBoxes
-            // 
-            this.pnlCheckBoxes.Controls.Add(this.chkQQ);
-            this.pnlCheckBoxes.Controls.Add(this.chkDns);
-            this.pnlCheckBoxes.Controls.Add(this.checkBox2);
-            this.pnlCheckBoxes.Controls.Add(this.chkUdp);
-            this.pnlCheckBoxes.Controls.Add(this.checkBox1);
-            this.pnlCheckBoxes.Controls.Add(this.chkTcp);
-            this.pnlCheckBoxes.Controls.Add(this.chkArp);
-            this.pnlCheckBoxes.Location = new System.Drawing.Point(3, 36);
-            this.pnlCheckBoxes.Name = "pnlCheckBoxes";
-            this.pnlCheckBoxes.Size = new System.Drawing.Size(391, 32);
-            this.pnlCheckBoxes.TabIndex = 2;
-            // 
-            // chkQQ
-            // 
-            this.chkQQ.AutoSize = true;
-            this.chkQQ.Checked = true;
-            this.chkQQ.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkQQ.Location = new System.Drawing.Point(341, 10);
-            this.chkQQ.Name = "chkQQ";
-            this.chkQQ.Size = new System.Drawing.Size(42, 17);
-            this.chkQQ.TabIndex = 1;
-            this.chkQQ.Text = "QQ";
-            this.chkQQ.UseVisualStyleBackColor = true;
-            this.chkQQ.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-            // 
-            // chkDns
-            // 
-            this.chkDns.AutoSize = true;
-            this.chkDns.Checked = true;
-            this.chkDns.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDns.Location = new System.Drawing.Point(286, 10);
-            this.chkDns.Name = "chkDns";
-            this.chkDns.Size = new System.Drawing.Size(49, 17);
-            this.chkDns.TabIndex = 1;
-            this.chkDns.Text = "DNS";
-            this.chkDns.UseVisualStyleBackColor = true;
-            this.chkDns.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-            // 
-            // chkUdp
-            // 
-            this.chkUdp.AutoSize = true;
-            this.chkUdp.Checked = true;
-            this.chkUdp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkUdp.Location = new System.Drawing.Point(228, 10);
-            this.chkUdp.Name = "chkUdp";
-            this.chkUdp.Size = new System.Drawing.Size(52, 17);
-            this.chkUdp.TabIndex = 1;
-            this.chkUdp.Text = "ICMP";
-            this.chkUdp.UseVisualStyleBackColor = true;
-            this.chkUdp.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-            // 
-            // chkTcp
-            // 
-            this.chkTcp.AutoSize = true;
-            this.chkTcp.Checked = true;
-            this.chkTcp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTcp.Location = new System.Drawing.Point(112, 10);
-            this.chkTcp.Name = "chkTcp";
-            this.chkTcp.Size = new System.Drawing.Size(55, 17);
-            this.chkTcp.TabIndex = 1;
-            this.chkTcp.Text = "HTTP";
-            this.chkTcp.UseVisualStyleBackColor = true;
-            this.chkTcp.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-            // 
-            // chkArp
-            // 
-            this.chkArp.AutoSize = true;
-            this.chkArp.Checked = true;
-            this.chkArp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkArp.Location = new System.Drawing.Point(5, 10);
-            this.chkArp.Name = "chkArp";
-            this.chkArp.Size = new System.Drawing.Size(48, 17);
-            this.chkArp.TabIndex = 1;
-            this.chkArp.Text = "ARP";
-            this.chkArp.UseVisualStyleBackColor = true;
-            this.chkArp.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // btnStop
             // 
@@ -248,14 +159,14 @@
             // menuStart
             // 
             this.menuStart.Name = "menuStart";
-            this.menuStart.Size = new System.Drawing.Size(152, 22);
+            this.menuStart.Size = new System.Drawing.Size(115, 22);
             this.menuStart.Text = "开始(&B)";
             this.menuStart.Click += new System.EventHandler(this.menuStart_Click);
             // 
             // menuStop
             // 
             this.menuStop.Name = "menuStop";
-            this.menuStop.Size = new System.Drawing.Size(152, 22);
+            this.menuStop.Size = new System.Drawing.Size(115, 22);
             this.menuStop.Text = "暂停(&S)";
             this.menuStop.Click += new System.EventHandler(this.menuStop_Click);
             // 
@@ -274,32 +185,6 @@
             this.menuAbout.Text = "关于本系统(&A)";
             this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(59, 10);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(47, 17);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "TCP";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(173, 10);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(49, 17);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "UDP";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckedChanged);
-            // 
             // FrmPacketsAll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -312,8 +197,6 @@
             this.Name = "FrmPacketsAll";
             this.Text = "网络连接监控";
             this.pnlHeader.ResumeLayout(false);
-            this.pnlCheckBoxes.ResumeLayout(false);
-            this.pnlCheckBoxes.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -339,14 +222,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuStop;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuAbout;
-        private System.Windows.Forms.CheckBox chkUdp;
-        private System.Windows.Forms.CheckBox chkTcp;
-        private System.Windows.Forms.CheckBox chkArp;
-        private System.Windows.Forms.Panel pnlCheckBoxes;
-        private System.Windows.Forms.CheckBox chkQQ;
-        private System.Windows.Forms.CheckBox chkDns;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
 
     }
 }

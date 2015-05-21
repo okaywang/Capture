@@ -61,9 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ControlExtension.cs" />
-    <Compile Include="ProtocalReader\DnsReader.cs" />
-    <Compile Include="ProtocalReader\QICQ.cs" />
-    <Compile Include="ProtocalReader\HttpReader.cs" />
     <Compile Include="View\FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,13 +107,6 @@
     <Compile Include="View\FrmPacketsAll.Designer.cs">
       <DependentUpon>FrmPacketsAll.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProtocalReader\ArpReader.cs" />
-    <Compile Include="ProtocalReader\ICMPReader.cs" />
-    <Compile Include="ProtocalReader\IProtocalReader.cs" />
-    <Compile Include="ProtocalReader\ReaderBase.cs" />
-    <Compile Include="ProtocalReader\TcpReader.cs" />
-    <Compile Include="ProtocalReader\UdpReader.cs" />
-    <Compile Include="ProtocalReader\IpReader.cs" />
     <EmbeddedResource Include="View\FrmAbout.resx">
       <DependentUpon>FrmAbout.cs</DependentUpon>
     </EmbeddedResource>

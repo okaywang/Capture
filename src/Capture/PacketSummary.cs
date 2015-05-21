@@ -17,13 +17,15 @@ namespace Capture
         [System.ComponentModel.DisplayName("目的Ip")]
         public string Destination { get; set; }
 
-        [System.ComponentModel.DisplayName("协议")]
-        public string Protocal { get; set; }
+        [System.ComponentModel.DisplayName("分类")]
+        public string Type { get; set; }
+        //[System.ComponentModel.DisplayName("协议")]
+        //public string Protocal { get; set; }
 
         [System.ComponentModel.DisplayName("长度")]
         public int Length { get; set; }
 
-        [System.ComponentModel.DisplayName("备注")]
-        public string Memo { get; set; }
+        //[System.ComponentModel.DisplayName("备注")]
+        //public string Memo { get; set; }
     }
 }
