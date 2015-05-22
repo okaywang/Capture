@@ -41,16 +41,16 @@ namespace Capture
 
             menuStop.Enabled = btnStop.Enabled = false;
 
-          
-
-            _dictIpName.Add("101.226.103.106", "QQ");
-            _dictIpName.Add("116.211.115.228", "优酷");
-            _dictIpName.Add("180.96.12.1", "京东");
-            _dictIpName.Add("61.191.187.241", "淘宝");
-            _dictIpName.Add("61.191.187.240", "淘宝");               
-            _dictIpName.Add("61.152.103.213", "游戏");
-            _dictIpName.Add("210.77.149.28", "炒股");
-
+            _dictIpName.Add("101.226.103.106", "QQ");//http://www.qq.com
+            _dictIpName.Add("220.181.138.29", "QQ");//http://www.qq.com
+            _dictIpName.Add("123.151.13.168", "QQ");//http://www.qq.com
+            _dictIpName.Add("116.211.115.228", "网络视频");//http://www.youku.com
+            _dictIpName.Add("180.96.12.1", "购物");//京东
+            _dictIpName.Add("106.39.178.1", "购物");//京东
+            _dictIpName.Add("61.191.187.241", "购物");//淘宝
+            _dictIpName.Add("61.191.187.240", "购物");//淘宝               
+            _dictIpName.Add("61.152.103.213", "游戏");//http://www.cga.com.cn/
+            _dictIpName.Add("210.77.149.28", "炒股");//http://bj.gtja.com/
         }
 
         public bool CaptureJavascript { get; set; }

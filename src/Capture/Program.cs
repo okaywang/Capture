@@ -20,17 +20,11 @@ namespace Capture
             //Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             //AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
-
-
             var frmDevices = new FrmDevices();
             var dialogResult = frmDevices.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
                 Application.Run(new FrmPacketsAll(frmDevices.SelectedDevice));
-            }
-            else if (dialogResult == DialogResult.Yes)
-            {
-                Application.Run(new FrmPacketsHttp(frmDevices.SelectedDevice));
             }
         }
 

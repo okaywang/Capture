@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pnlDevices = new System.Windows.Forms.Panel();
             this.btnNext = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -86,23 +85,11 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
-            // button1
-            // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.button1.Location = new System.Drawing.Point(300, 256);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 37);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Http网络连接监控";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnNext_Click);
-            // 
             // FrmDevices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 305);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmDevices";
@@ -122,6 +109,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlDevices;
         private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Button button1;
     }
 }

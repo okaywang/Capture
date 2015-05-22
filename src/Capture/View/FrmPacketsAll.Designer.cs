@@ -36,7 +36,6 @@
             this.pnlBody = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuExport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuClear = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,20 +112,12 @@
             // 文件ToolStripMenuItem
             // 
             this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuExport,
             this.menuClear,
             this.toolStripMenuItem2,
             this.menuExit});
             this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
             this.文件ToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.文件ToolStripMenuItem.Text = "文件";
-            // 
-            // menuExport
-            // 
-            this.menuExport.Name = "menuExport";
-            this.menuExport.Size = new System.Drawing.Size(116, 22);
-            this.menuExport.Text = "导出(&S)";
-            this.menuExport.Click += new System.EventHandler(this.menuExport_Click);
             // 
             // menuClear
             // 
@@ -213,7 +204,6 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuExport;
         private System.Windows.Forms.ToolStripMenuItem menuClear;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem menuExit;
